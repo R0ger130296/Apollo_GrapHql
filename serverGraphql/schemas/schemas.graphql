@@ -1,0 +1,53 @@
+type Query{ 
+    getCursos: [Curso]
+    getCurso(_id:ID!): Curso
+    getEstudiantes: [Estudiante]
+    getEstudiante(_id:ID!): Estudiante
+} 
+
+type Curso{
+    _id:ID
+    titulo:String
+    profesor:String
+    descripcion:String
+    genero:String
+    asistentes:[Estudiante]
+}
+
+type Estudiante {
+    _id:ID!
+    nombre:String
+    email:String
+}
+
+input EstudianteImput {
+    nombre:String!
+    email:String
+}
+
+input CursoImput{
+    titulo:String!
+    profesor:String!
+    descripcion:String
+    genero:String
+}
+
+input EstudianteEditaInput {
+    nombre:String
+    email:String
+}
+
+input CursoEditaInput{
+    titulo:String
+    profesor:String
+    descripcion:String
+    genero:String
+    asistentes:[ID]
+}
+
+type Mutation{
+    nuevoCurso(input:CursoImput!):Curso
+    editarCurso(id:ID!,input:CursoEditaInput):Curso
+    editarEstudiante(id:ID!,input:EstudianteEditaInput):Estudiante
+    nuevoEstudiante(input:EstudianteImput!):Estudiante
+}
